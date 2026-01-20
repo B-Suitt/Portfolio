@@ -5,6 +5,20 @@ export const Header = () => {
   {
     /* !!! CREAR SCROLL A CADA SECCION */
   }
+  const menu = [
+    {
+      nombre: "Inicio",
+      url: "",
+    },
+    {
+      nombre: "Proyectos",
+      url: "",
+    },
+    {
+      nombre: "Contacto",
+      url: "",
+    },
+  ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
@@ -18,17 +32,25 @@ export const Header = () => {
           </button>
 
           {/* Desktop Navegation */}
-          <div className="hidden md:flex items-center gap-8">
-            <button className="text-gray-300 hover:text-cyan-400 transition-colors">
-              Sobre mí
-            </button>
-            <button className="text-gray-300 hover:text-cyan-400 transition-colors">
-              Proyectos
-            </button>
-            <button className="px-6 py-2 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg">
-              Contacto
-            </button>
+
+          <div>
+            <ul className="hidden md:flex items-center gap-8">
+              {menu.map((item, i) => (
+                <li key={i}>
+                  {item.nombre == "Contacto" ? (
+                    <a className="px-6 py-2 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg">
+                      {item.nombre}
+                    </a>
+                  ) : (
+                    <a className="text-gray-300 hover:text-cyan-400 transition-colors">
+                      {item.nombre}
+                    </a>
+                  )}
+                </li>
+              ))}
+            </ul>
           </div>
+
           {/* Menu Mobile */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -36,21 +58,21 @@ export const Header = () => {
           >
             {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
+        </div>
+        {/* Mobile Navegation*/}
+        {isMenuOpen && (
+          <div>
+            <ul className="md:hidden mt-4 flex flex-col gap-4 pt-4 border-t border-gray-700 items-center">
+              {menu.map((item, i) => (
+                <li key={i}>
+                  <a className="text-gray-300 hover:text-cyan-400 transition-colors text-left">
+                    {item.nombre}
+                  </a>
+                </li>
+              ))}
+            </ul>
           </div>
-          {/* Mobile Navegation*/}
-          {isMenuOpen && (
-            <div className="md:hidden mt-4 flex flex-col gap-4 pt-4 border-t border-gray-700 items-center">
-              <button className="text-gray-300 hover:text-cyan-400 transition-colors text-left">
-                Sobre mí
-              </button>
-              <button className="text-gray-300 hover:text-cyan-400 transition-colors text-left">
-                Proyectos
-              </button>
-              <button className="text-gray-300 hover:text-cyan-400 transition-colors text-left">
-                Contacto
-              </button>
-            </div>
-          )}
+        )}
       </nav>
     </header>
   );
