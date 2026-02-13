@@ -8,64 +8,85 @@ export const Header = () => {
   const menu = [
     {
       nombre: "Inicio",
-      url: "",
+      url: "#about",
     },
     {
       nombre: "Proyectos",
-      url: "",
+      url: "#projects",
     },
     {
       nombre: "Contacto",
-      url: "",
+      url: "#contact",
     },
   ];
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
-    <header className="fixed top-4 left-4 right-4 z-50 bg-gray-800/90 backdrop-blur-xl rounded-2xl shadow-2xl border border-gray-700">
-      <nav className="max-w-6xl mx-auto px-6 py-4">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-gray-950/80 backdrop-blur-md border-b border-gray-800/50">
+      <nav className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <button className="text-white hover:text-cyan-400 transition-colors">
-            <span className="text-cyan-400">&lt;</span>Bastian Suitt
-            <span className="text-cyan-400">/&gt;</span>
-          </button>
+          {/* Logo / Botón de inicio */}
+          <a
+            href="#about"
+            className="text-xl font-bold text-white hover:text-cyan-400 transition-colors"
+          >
+            <span className="text-cyan-400">&lt;</span>
+            Bastian Suitt
+            <span className="text-cyan-400"> /&gt;</span>
+          </a>
 
-          {/* Desktop Navegation */}
+          {/* Desktop Navigation */}
+          <ul className="hidden md:flex items-center gap-8">
+            {menu.map((item, i) => (
+              <li key={i}>
+                {item.nombre === "Contacto" ? (
+                  <a
+                    href={item.url}
+                    className="px-5 py-2 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-full font-medium hover:scale-105 transition-all shadow-lg shadow-cyan-500/20"
+                  >
+                    {item.nombre}
+                  </a>
+                ) : (
+                  <a
+                    href={item.url}
+                    className="text-gray-400 hover:text-white transition-colors font-medium text-sm uppercase tracking-wider"
+                  >
+                    {item.nombre}
+                  </a>
+                )}
+              </li>
+            ))}
+          </ul>
 
-          <div>
-            <ul className="hidden md:flex items-center gap-8">
-              {menu.map((item, i) => (
-                <li key={i}>
-                  {item.nombre == "Contacto" ? (
-                    <a className="px-6 py-2 bg-linear-to-r from-cyan-500 to-blue-500 text-white rounded-lg hover:from-cyan-600 hover:to-blue-600 transition-all shadow-lg">
-                      {item.nombre}
-                    </a>
-                  ) : (
-                    <a className="text-gray-300 hover:text-cyan-400 transition-colors">
-                      {item.nombre}
-                    </a>
-                  )}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Menu Mobile */}
+          {/* Menu Mobile Toggle */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="md:hidden text-white"
+            className="md:hidden p-2 text-gray-400 hover:text-white transition-colors"
           >
-            {isMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {isMenuOpen ? <X size={28} /> : <Menu size={28} />}
           </button>
         </div>
-        {/* Mobile Navegation*/}
+
+        {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div>
-            <ul className="md:hidden mt-4 flex flex-col gap-4 pt-4 border-t border-gray-700 items-center">
+          <div className="md:hidden absolute top-full left-0 right-0 bg-gray-950 border-b border-gray-800 animate-in fade-in slide-in-from-top-4">
+            <ul className="flex flex-col gap-6 p-8 items-center">
               {menu.map((item, i) => (
-                <li key={i}>
-                  <a className="text-gray-300 hover:text-cyan-400 transition-colors text-left">
+                <li key={i} className="w-full text-center">
+                  <a
+                    href={item.url}
+                    onClick={handleLinkClick}
+                    className={`text-xl font-medium transition-colors ${
+                      item.nombre === "Contacto"
+                        ? "text-cyan-400"
+                        : "text-gray-300 hover:text-white"
+                    }`}
+                  >
                     {item.nombre}
                   </a>
                 </li>

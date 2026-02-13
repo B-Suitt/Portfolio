@@ -6,15 +6,10 @@ export const Hero = () => {
       id="hero"
       className="min-h-screen flex items-center justify-center px-6 pt-20 relative overflow-x-hidden"
     >
-      {/* Decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
-      </div>
 
       <div className="max-w-4xl mx-auto text-center relative z-10">
         <div className="mb-8">
-          <div className="w-32 h-32 mx-auto bg-linear-to-br from-cyan-500 to-blue-600 rounded-full mb-6 shadow-2xl shadow-cyan-500/50 relative">
+          <div className="w-32 h-32 mx-auto bg-linear-to-br from-cyan-500 to-blue-600 rounded-full mb-6  relative">
             <div className="absolute inset-2 bg-gray-900 rounded-full" />
           </div>
         </div>
