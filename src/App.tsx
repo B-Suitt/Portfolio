@@ -1,5 +1,6 @@
 import About from "./components/About";
-import { Header } from "./components/Header";
+import Header from "./components/Header";
+import Projects from "./components/Projects";
 import StackTec from "./components/StackTec";
 
 function App() {
@@ -8,6 +9,7 @@ function App() {
       <Header />
       <About />
       <StackTec />
+      <Projects />
     </div>
   );
 }
